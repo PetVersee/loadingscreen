@@ -1,13 +1,21 @@
 --setings:
 title = "Loading Script!" --upper title
 loading_text = "Please wait!" --gray title
-loadingtime = "200" --loading time (in seconds)
+loadingtime = "300" --loading time (in seconds)
 
+local myGuiName = "ScreenGui"
 
+local function hideAllButMyGUI()
+    for _, gui in ipairs(playerGui:GetChildren()) do
+        -- Menyembunyikan semua ScreenGui kecuali yang bernama 'LoadingScreen'
+        if gui:IsA("ScreenGui") and gui.Name ~= myGuiName then
+            gui.Enabled = false
+        end
+    end
+end
 
-
-
-
+-- Panggil fungsi untuk menyembunyikan semua GUI kecuali loading screen
+hideAllButMyGUI()
 
 
 --credits to arko2230 ! 
