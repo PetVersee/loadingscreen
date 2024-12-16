@@ -21,13 +21,13 @@ Frame.AnchorPoint = Vector2.new(0.5, 0.5)
 Frame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
 Frame.BackgroundTransparency = 0.2
 Frame.Position = UDim2.new(0.5, 0, 0.5, 0)
-Frame.Size = UDim2.new(0.8, 0, 0.8, 0)
+Frame.Size = UDim2.new(1, 0, 1, 0)
 
 local Frame_2 = Instance.new("Frame")
 Frame_2.Parent = Frame
 Frame_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Frame_2.Position = UDim2.new(0.374, 0, 0.37, 0)
-Frame_2.Size = UDim2.new(0.25, 0, 0.26, 0)
+Frame_2.Position = UDim2.new(0.5, -150, 0.5, -150)  -- Posisi di tengah layar dengan offset
+Frame_2.Size = UDim2.new(0.5, 0, 0.5, 0)  -- 50% dari lebar dan tinggi layar
 Instance.new("UICorner", Frame_2)
 
 local name = Instance.new("TextLabel")
@@ -37,6 +37,7 @@ name.Size = UDim2.new(1, 0, 0.15, 0)
 name.Font = Enum.Font.FredokaOne
 name.TextColor3 = Color3.fromRGB(255, 255, 255)
 name.TextScaled = true
+name.TextSize = 35
 name.BackgroundTransparency = 1
 
 local loadingtext = Instance.new("TextLabel")
@@ -47,6 +48,7 @@ loadingtext.Position = UDim2.new(0.15, 0, 0.2, 0)
 loadingtext.Font = Enum.Font.FredokaOne
 loadingtext.TextColor3 = Color3.fromRGB(97, 97, 97)
 loadingtext.TextScaled = true
+loadingtext.TextSize = 20
 loadingtext.BackgroundTransparency = 1
 
 -- Fungsi untuk animasi titik (Dots):
