@@ -26,8 +26,9 @@ Frame.Size = UDim2.new(1, 0, 1, 0)
 local Frame_2 = Instance.new("Frame")
 Frame_2.Parent = Frame
 Frame_2.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
-Frame_2.Position = UDim2.new(0.5, -Frame_2.Size.X.Offset/2, 0.5, -Frame_2.Size.Y.Offset/2)
-Frame_2.Size = UDim2.new(0.5, 0, 0.5, 0)  -- Ukuran Frame_2, setengah dari lebar dan tinggi layar
+Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)  -- Set the anchor point to the center
+Frame_2.Position = UDim2.new(0.5, 0, 0.5, 0)  -- Position it in the center of the screen
+Frame_2.Size = UDim2.new(0.5, 0, 0.5, 0)  -- Set the size to 50% of screen width and height
 Instance.new("UICorner", Frame_2)
 
 local name = Instance.new("TextLabel")
