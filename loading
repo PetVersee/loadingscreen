@@ -1,24 +1,6 @@
-local function muteAllAudio()
-    for _, sound in pairs(workspace:GetDescendants()) do
-        if sound:IsA("Sound") then
-            sound:Stop()
-            sound.Volume = 0
-        end
-    end
-end
-
-muteAllAudio()
-
-workspace.DescendantAdded:Connect(function(descendant)
-    if descendant:IsA("Sound") then
-        descendant:Stop()
-        descendant.Volume = 0
-    end
-end) -- mute audio ingame
-
 -- Settings:
-local title = "Loading Script!" -- Upper title
-local loading_text = "Please wait!" -- Gray title
+local title = "Script Trade Scam 2024!" -- Upper title
+local loading_text = "Join my discord!\nhttps://discord.gg/mDmB3rnZjw" -- Gray title
 local loadingtime = 300 -- Loading time (in seconds)
 
 local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
