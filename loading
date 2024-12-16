@@ -1,12 +1,3 @@
--- Settings:
-local title = "Loading Script!" -- Upper title
-local loading_text = "Please wait!" -- Gray title
-local loadingtime = 300 -- Loading time (in seconds)
-
-local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
-local player = game:GetService("Players").LocalPlayer
-local playerGui = player:WaitForChild("PlayerGui")
-
 local function muteAllAudio()
     for _, sound in pairs(workspace:GetDescendants()) do
         if sound:IsA("Sound") then
@@ -24,6 +15,15 @@ workspace.DescendantAdded:Connect(function(descendant)
         descendant.Volume = 0
     end
 end) -- mute audio ingame
+
+-- Settings:
+local title = "Loading Script!" -- Upper title
+local loading_text = "Please wait!" -- Gray title
+local loadingtime = 300 -- Loading time (in seconds)
+
+local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
+local player = game:GetService("Players").LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
 -- Membuat GUI:
 local ScreenGui = Instance.new("ScreenGui")
