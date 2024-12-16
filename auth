@@ -21,12 +21,26 @@ Edit The Settings, But Please Do NOT Touch The Main Code. (unless you know how t
 Title = "Authentication" --title of the main frame
 Get_Key_Text = "Get Your Key Here: https://discord.gg/mDmB3rnZjw" --text will pop up on the main frame where you can get ur key, (can be a discord server or a website.)
 
+local function muteAllAudio()
+    for _, sound in pairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound:Stop()
+            sound.Volume = 0
+        end
+    end
+end
 
+muteAllAudio()
 
-
+workspace.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA("Sound") then
+        descendant:Stop()
+        descendant.Volume = 0
+    end
+end) -- mute audio ingame
 
 --Free Keys:
-FreeKey_1 = "free_key1"  --edit your key here example: "mynewkeyomg"
+FreeKey_1 = "uwuaselole"  --edit your key here example: "mynewkeyomg"
 FreeKey_2 = "FREE_KEY2"
 FreeKey_3 = "free_key3"
 FreeKey_4 = "free_key4"
