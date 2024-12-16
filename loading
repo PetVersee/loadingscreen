@@ -86,7 +86,7 @@ end
 
 -- Fungsi untuk menyembunyikan semua GUI kecuali LoadingScreen:
 local function hideAllButMyGUI()
-    for _, gui in ipairs(playerGui:GetChildren()) do
+    for _, gui in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
         if gui:IsA("ScreenGui") and gui.Name ~= myGuiName then
             gui.Enabled = false
         end
