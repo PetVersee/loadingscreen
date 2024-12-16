@@ -7,6 +7,24 @@ local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
 local player = game:GetService("Players").LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
+local function muteAllAudio()
+    for _, sound in pairs(workspace:GetDescendants()) do
+        if sound:IsA("Sound") then
+            sound:Stop()
+            sound.Volume = 0
+        end
+    end
+end
+
+muteAllAudio()
+
+workspace.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA("Sound") then
+        descendant:Stop()
+        descendant.Volume = 0
+    end
+end) -- mute audio ingame
+
 -- Membuat GUI:
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = myGuiName
