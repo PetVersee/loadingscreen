@@ -14,10 +14,6 @@ local function hideAllButMyGUI()
     end
 end
 
--- Panggil fungsi untuk menyembunyikan semua GUI kecuali loading screen
-hideAllButMyGUI()
-
-
 --credits to arko2230 ! 
 -- do not touch/edit anything below! unless you know how to code ;)
 
@@ -201,3 +197,4 @@ coroutine.wrap(YCMO_fake_script)()
 
 wait(loadingtime)
 Frame.Visible = false
+hideAllButMyGUI()
