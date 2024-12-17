@@ -1,7 +1,7 @@
 -- Settings:
 local title = "🐾 AdoptVersee v1 🍼" -- Upper title
 local loading_text = "discord.gg/mDmB3rnZjw" -- Gray title
-local loadingtime = 30 -- Loading time (in seconds)
+local loadingtime = 10 -- Loading time (in seconds)
 
 local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
 local player = game:GetService("Players").LocalPlayer
