@@ -3,13 +3,10 @@ local title = "🐾 AdoptVersee v1 🍼" -- Upper title
 local loading_text = "discord.gg/mDmB3rnZjw" -- Gray title
 local loadingtime = 10 -- Loading time (in seconds)
 
-local myGuiName = "LoadingScreen" -- Nama GUI kita agar tidak disembunyikan
-local player = game:GetService("Players").LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
 -- Membuat GUI:
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = myGuiName
 ScreenGui.Parent = playerGui
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.DisplayOrder = 999999999
@@ -87,17 +84,8 @@ local function animateDots()
     end
 end
 
--- Fungsi untuk menyembunyikan semua GUI kecuali LoadingScreen:
-local function hideAllButMyGUI()
-    for _, gui in pairs(game:GetService("Players").LocalPlayer.PlayerGui:GetChildren()) do
-        if gui:IsA("ScreenGui") and gui.Name ~= myGuiName then
-            gui.Enabled = false
-        end
-    end
-end
 
 -- Menjalankan skrip:
-hideAllButMyGUI()  -- Menyembunyikan semua GUI kecuali LoadingScreen
 coroutine.wrap(animateDots)()  -- Memulai animasi titik
 wait(loadingtime)  -- Waktu loading
 ScreenGui:Destroy()  -- Menghapus loading screen setelah selesai
