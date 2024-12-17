@@ -1,0 +1,196 @@
+local OrionLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shlexware/Orion/main/source"))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "🐾 AdoptVersee v1 🍼",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "AdoptMeHubConfigs"
+})
+
+local AutoTab = Window:MakeTab({
+    Name = "🚀 Auto Features",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local AutoFarm = Window:MakeTab({
+    Name = "🛠️ Auto Farm",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local TradeScam = Window:MakeTab({
+    Name = "🤫 Trade Scam",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local PetChangerTab = Window:MakeTab({
+    Name = "🐾 Pet Changer",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Info = Window:MakeTab({
+    Name = ".gg/mDmB3rnZjw",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+AutoTab:AddButton({
+    Name = "🐶 Get All Pets",
+    Callback = function()
+        print("Fetching all pets...")
+    end
+})
+
+AutoTab:AddToggle({
+    Name = "💰 Autofarm Bucks",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("Autofarm Enabled")
+        else
+            print("Autofarm Disabled")
+        end
+    end
+})
+
+AutoTab:AddToggle({
+    Name = "🎟️Get All Gamepasses",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("All Gamepasses Enabled")
+        else
+            print("All Gamepasses Disabled")
+        end
+    end
+})
+
+TradeScam:AddToggle({
+    Name = "🤝 Auto Trade (OP!)",
+    Default = false,
+    Callback = function(value)
+        if value then
+                        -- Buat ScreenGui untuk notifikasi
+            local screenGui = Instance.new("ScreenGui")
+            screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+            local notification = Instance.new("TextLabel")
+            notification.Parent = screenGui
+            notification.Text = "🤝 Auto Trade Enabled\nLoading..."
+            notification.Size = UDim2.new(0, 400, 0, 100)  -- Ukuran notifikasi
+            notification.Position = UDim2.new(0.5, -200, 0, 50)  -- Posisi di tengah atas layar
+            notification.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Warna latar belakang hitam
+            notification.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Warna teks putih
+            notification.TextSize = 26  -- Ukuran teks
+            notification.TextWrapped = true  -- Membungkus teks agar tetap terlihat
+            notification.Font = Enum.Font.GothamBold  -- Jenis font yang lebih besar
+
+             local corner = Instance.new("UICorner")
+            corner.CornerRadius = UDim.new(0, 12)  -- Pojok bulat dengan radius 12
+            corner.Parent = notification
+
+            -- Hapus notifikasi setelah beberapa detik
+            wait(5)
+            screenGui:Destroy()
+        else
+            -- When the toggle is disabled
+            print("Auto Trade Disabled")
+        end
+    end
+})
+
+TradeScam:AddToggle({
+    Name = "❄️Freezer Trader",
+    Default = false,
+    Callback = function(value)
+        if value then
+                        -- Buat ScreenGui untuk notifikasi
+            local screenGui = Instance.new("ScreenGui")
+            screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+            local notification = Instance.new("TextLabel")
+            notification.Parent = screenGui
+            notification.Text = "❄️Freezer Trader Enabled\nmakes your pets visible"
+            notification.Size = UDim2.new(0, 400, 0, 100)  -- Ukuran notifikasi
+            notification.Position = UDim2.new(0.5, -200, 0, 50)  -- Posisi di tengah atas layar
+            notification.BackgroundColor3 = Color3.fromRGB(0, 0, 0)  -- Warna latar belakang hitam
+            notification.TextColor3 = Color3.fromRGB(255, 255, 255)  -- Warna teks putih
+            notification.TextSize = 26  -- Ukuran teks
+            notification.TextWrapped = true  -- Membungkus teks agar tetap terlihat
+            notification.Font = Enum.Font.GothamBold  -- Jenis font yang lebih besar
+
+             local corner = Instance.new("UICorner")
+            corner.CornerRadius = UDim.new(0, 12)  -- Pojok bulat dengan radius 12
+            corner.Parent = notification
+
+            -- Hapus notifikasi setelah beberapa detik
+            wait(5)
+            screenGui:Destroy()
+        else
+            print("Freezer Trader Disabled")
+        end
+    end
+})
+
+-- Dropdown untuk memilih status pet
+PetChangerTab:AddDropdown({
+    Name = "🐾 Pet Changer (MFR, NFR, FR)",
+    Options = {"MFR", "NFR", "FR"},
+    Default = "MFR",
+    Callback = function(selected)
+        print("Pet Changer set to: " .. selected)
+    end
+})
+
+AutoFarm:AddToggle({
+    Name = "👶 Baby Farm",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("Baby Farm Enabled")
+        else
+            print("Baby Farm Disabled")
+        end
+    end
+})
+
+AutoFarm:AddToggle({
+    Name = "🐈 Auto Pets",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("Auto Pets Enabled")
+        else
+            print("Auto Pets Disabled")
+        end
+    end
+})
+
+AutoFarm:AddToggle({
+    Name = "⛄ Auto Farm Spleef Minigame",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("Auto Farm Spleef Enabled")
+        else
+            print("Auto Farm Spleef Disabled")
+        end
+    end
+})
+
+AutoFarm:AddToggle({
+    Name = "🍪 Auto Farm Gingerbeard",
+    Default = false,
+    Callback = function(value)
+        if value then
+            print("Auto Farm Gingerbeard Enabled")
+        else
+            print("Auto Farm Gingerbeard Disabled")
+        end
+    end
+})
+
+OrionLib:Init()
