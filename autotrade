@@ -1,0 +1,135 @@
+-- Create a basic GUI window
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "TradeScamGUI"
+screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 300, 0, 200)
+frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+frame.BorderSizePixel = 2
+frame.BorderColor3 = Color3.fromRGB(255, 255, 255)
+frame.Parent = screenGui
+
+-- Add title text
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Size = UDim2.new(1, 0, 0, 30)
+titleLabel.Text = "TradeScam: Auto Trade"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+titleLabel.TextSize = 18
+titleLabel.Parent = frame
+titleLabel.Font = Enum.Font.GothamBold
+
+-- Add a dropdown to the GUI
+local dropdownLabel = Instance.new("TextLabel")
+dropdownLabel.Size = UDim2.new(1, -20, 0, 30)
+dropdownLabel.Position = UDim2.new(0, 10, 0, 50)
+dropdownLabel.Text = "Select Player:"
+dropdownLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+dropdownLabel.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+dropdownLabel.TextSize = 16
+dropdownLabel.Parent = frame
+dropdownLabel.Font = Enum.Font.GothamBold
+
+-- Create a button to simulate the dropdown
+local dropdownButton = Instance.new("TextButton")
+dropdownButton.Size = UDim2.new(1, -20, 0, 30)
+dropdownButton.Position = UDim2.new(0, 10, 0, 90)
+dropdownButton.Text = "Select a Player"
+dropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+dropdownButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+dropdownButton.TextSize = 16
+dropdownButton.Parent = frame
+dropdownButton.Font = Enum.Font.GothamBold
+
+-- List of player names for the dropdown
+local playerNames = {}
+for _, player in pairs(game:GetService("Players"):GetPlayers()) do
+    table.insert(playerNames, player.Name)
+end
+
+-- Function to simulate opening the dropdown
+local function openDropdown()
+    -- Create a frame to hold the scrollable dropdown list
+    local dropdownFrame = Instance.new("Frame")
+    dropdownFrame.Size = UDim2.new(1, -20, 0, 120)
+    dropdownFrame.Position = UDim2.new(0, 10, 0, 120)
+    dropdownFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dropdownFrame.Parent = frame
+
+    -- Create a ScrollingFrame inside dropdownFrame for scrollability
+    local scrollingFrame = Instance.new("ScrollingFrame")
+    scrollingFrame.Size = UDim2.new(1, 0, 1, 0) -- Fill the entire dropdownFrame
+    scrollingFrame.Position = UDim2.new(0, 0, 0, 0)
+    scrollingFrame.BackgroundTransparency = 1
+    scrollingFrame.CanvasSize = UDim2.new(0, 0, 0, #playerNames * 30) -- Adjust canvas size based on player count
+    scrollingFrame.ScrollBarThickness = 6
+    scrollingFrame.Parent = dropdownFrame
+
+    -- Add a button for each player name in the dropdown
+    local padding = 0
+    for _, playerName in ipairs(playerNames) do
+        local playerButton = Instance.new("TextButton")
+        playerButton.Size = UDim2.new(1, 0, 0, 30)
+        playerButton.Position = UDim2.new(0, 0, 0, padding)
+        playerButton.Text = playerName
+        playerButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        playerButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        playerButton.TextSize = 16
+        playerButton.Parent = scrollingFrame
+        playerButton.Font = Enum.Font.GothamBold
+
+        -- Add functionality to select a player
+        playerButton.MouseButton1Click:Connect(function()
+            dropdownButton.Text = "Selected: " .. playerName
+            dropdownButton.Font = Enum.Font.GothamBold
+            dropdownFrame:Destroy() -- Close the dropdown after selection
+            print("Auto Trade enabled with " .. playerName)
+        end)
+
+        padding = padding + 30
+    end
+end
+
+-- When the dropdown button is clicked, open the dropdown
+dropdownButton.MouseButton1Click:Connect(function()
+    openDropdown()
+end)
+
+-- Add a label to display the status of Auto Trade
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Size = UDim2.new(1, -20, 0, 30)
+statusLabel.Position = UDim2.new(0, 10, 0, 150)
+statusLabel.Text = "Auto Trade Enabled"
+statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+statusLabel.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+statusLabel.TextSize = 16
+statusLabel.Parent = frame
+statusLabel.Font = Enum.Font.GothamBold
+
+-- Making the GUI movable based on the cursor position
+local dragging = false
+local dragStart = nil
+local startPos = nil
+
+frame.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = frame.Position
+    end
+end)
+
+frame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = false
+    end
+end)
+
+game:GetService("UserInputService").InputChanged:Connect(function(input)
+    if dragging then
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+    end
+end)
